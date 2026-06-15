@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/* ── FiberMode · dark optical-instrument theme ───────────────────────────── */
+:root {
+  color-scheme: dark;
+
+  --bg: #070a12;
+  --bg-2: #0a0f1c;
+  --panel: rgba(17, 24, 41, 0.72);
+  --panel-solid: #111829;
+  --border: rgba(140, 170, 220, 0.12);
+  --border-strong: rgba(140, 170, 220, 0.22);
+
+  --text: #e8eefb;
+  --text-dim: #8595b2;
+  --text-faint: #5a6889;
+
+  --accent: #34e7df; /* laser cyan */
+  --accent-2: #5b8cff; /* beam blue */
+  --accent-3: #ff5d9e; /* phase magenta */
+  --accent-glow: rgba(52, 231, 223, 0.5);
+
+  --ok: #3ad29f;
+  --warn: #ffb454;
+  --err: #ff6b6b;
+
+  --font-ui: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-ui);
+  color: var(--text);
+  background-color: var(--bg);
+  /* layered atmosphere: cyan glow top-left, beam-blue bottom-right, faint grid */
+  background-image:
+    radial-gradient(120% 90% at 12% -10%, rgba(52, 231, 223, 0.1), transparent 55%),
+    radial-gradient(100% 80% at 100% 110%, rgba(91, 140, 255, 0.1), transparent 50%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  background-attachment: fixed;
+}
+
+/* faint optical-bench grid overlay */
+#root::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(140, 170, 220, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(140, 170, 220, 0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 50%, transparent 100%);
+  z-index: 0;
+}
+
+/* glass panel utility */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+}
+
+/* number/data readouts */
+.mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1;
+}
+
+/* custom slim scrollbar */
+*::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(140, 170, 220, 0.18);
+  border-radius: 99px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 170, 220, 0.32);
+  background-clip: content-box;
+}
+
+/* native form controls inherit dark scheme */
+input,
+select,
+button {
+  font-family: inherit;
+}
+select option {
+  background: var(--panel-solid);
+  color: var(--text);
+}
+
+/* scan-line shimmer for loading */
+@keyframes scan {
+  0% { transform: translateY(-120%); }
+  100% { transform: translateY(120%); }
+}
+.scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 38%;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(52, 231, 223, 0.12),
+    transparent
+  );
+  animation: scan 1.5s ease-in-out infinite;
+}

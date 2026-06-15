@@ -1,0 +1,3 @@
+# Web backend deps (in addition to root requirements.txt: numpy, scipy, Pillow)
+fastapi>=0.110
+uvicorn[standard]>=0.29
