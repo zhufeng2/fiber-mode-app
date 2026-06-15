@@ -142,15 +142,15 @@ export default function App() {
       >
         <div className="flex items-center gap-3">
           <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)] text-sm font-extrabold text-[#04121a] shadow-[0_0_22px_-4px_var(--accent-glow)]">
-            FMA
+            PL
             <span className="absolute -inset-0.5 -z-10 rounded-xl bg-[var(--accent)] opacity-30 blur-md" />
           </div>
           <div>
             <h1 className="text-lg font-extrabold leading-tight tracking-tight text-[var(--text)]">
-              Fiber Mode Analyzer
+              PhotonLab
             </h1>
             <p className="mono text-[11px] uppercase tracking-[0.2em] text-[var(--text-faint)]">
-              Optical Fiber Mode Analysis
+              Optical Simulation Platform
             </p>
           </div>
         </div>
